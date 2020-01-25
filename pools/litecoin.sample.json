@@ -1,0 +1,51 @@
+{
+  "enabled": false,
+  "coin": "litecoin.json",
+  "address": "LTSsbhiP3nAUanq7cPbGXfDNuxPr8VMvv1",
+  "rewardRecipients": {
+    "LTSsbhiP3nAUanq7cPbGXfDNuxPr8VMvv1": 1.5
+  },
+  "paymentProcessing": {
+    "enabled": true,
+    "paymentInterval": 20,
+    "minimumPayment": 70,
+    "daemon": {
+      "host": "127.0.0.1",
+      "port": 19332,
+      "user": "user",
+      "password": "password"
+    }
+  },
+  "ports": {
+    "3008": {
+      "diff": 8
+    },
+    "3032": {
+      "diff": 32,
+      "varDiff": {
+        "minDiff": 8,
+        "maxDiff": 512,
+        "targetTime": 15,
+        "retargetTime": 90,
+        "variancePercent": 30
+      }
+    },
+    "3256": {
+      "diff": 256
+    }
+  },
+  "daemons": [
+    {
+      "host": "127.0.0.1",
+      "port": 19332,
+      "user": "user",
+      "password": "password"
+    }
+  ],
+  "p2p": {
+    "enabled": true,
+    "host": "127.0.0.1",
+    "port": 19333,
+    "disabledTransactions": true
+  }
+}

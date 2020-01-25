@@ -1,0 +1,87 @@
+{
+  "logLevel": "debug",
+  "logColors": true,
+  "cliPort": 9999,
+  "clustering": {
+    "enabled": true,
+    "forks": "auto"
+  },
+  "defaultPoolConfigurations": {
+    "blockRefreshInterval": 1000,
+    "jobRebroadcastTimeout": 55,
+    "connectionTimeout": 300,
+    "emitInvalidBlockHashes": false,
+    "validateWorkerUsername": true,
+    "tcpProxyProtocol": false,
+    "banning": {
+      "enabled": true,
+      "time": 300,
+      "invalidPercent": 50,
+      "checkThreshold": 500,
+      "purgeInterval": 300
+    },
+    "redis": {
+      "host": "127.0.0.1",
+      "port": 6379
+    }
+  },
+  "switching": {
+    "switch1": {
+      "enabled": false,
+      "algorithm": "sha256",
+      "ports": {
+        "3333": {
+          "diff": 10,
+          "varDiff": {
+            "minDiff": 16,
+            "maxDiff": 512,
+            "targetTime": 15,
+            "retargetTime": 90,
+            "variancePercent": 30
+          }
+        }
+      }
+    },
+    "switch2": {
+      "enabled": false,
+      "algorithm": "scrypt",
+      "ports": {
+        "4444": {
+          "diff": 10,
+          "varDiff": {
+            "minDiff": 16,
+            "maxDiff": 512,
+            "targetTime": 15,
+            "retargetTime": 90,
+            "variancePercent": 30
+          }
+        }
+      }
+    },
+    "switch3": {
+      "enabled": false,
+      "algorithm": "x11",
+      "ports": {
+        "3333": {
+          "diff": 10,
+          "varDiff": {
+            "minDiff": 16,
+            "maxDiff": 512,
+            "targetTime": 15,
+            "retargetTime": 90,
+            "variancePercent": 30
+          }
+        }
+      }
+    }
+  },
+  "profitSwitch": {
+    "enabled": false,
+    "updateInterval": 600,
+    "depth": 0.90,
+    "usePoloniex": true,
+    "useCryptsy": true,
+    "useMintpal": true,
+    "useBittrex": true
+  }
+}
