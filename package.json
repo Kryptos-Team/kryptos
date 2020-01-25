@@ -1,0 +1,36 @@
+{
+  "name": "kryptos",
+  "version": "1.0.0",
+  "description": "High performance mining pool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kryptos-Team/kryptos.git"
+  },
+  "keywords": [
+    "mining",
+    "pool",
+    "crypto",
+    "bitcoin",
+    "monero",
+    "litecoin",
+    "altcoin",
+    "stratum",
+    "poolserver",
+    "scrypt"
+  ],
+  "author": "Abhimanyu Saharan <desk.abhimanyu@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kryptos-Team/kryptos/issues"
+  },
+  "homepage": "https://github.com/Kryptos-Team/kryptos#readme",
+  "dependencies": {
+    "async": "^3.1.1",
+    "base58-native": "^0.1.4",
+    "bignum": "^0.13.1"
+  }
+}
