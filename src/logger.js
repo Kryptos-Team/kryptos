@@ -48,10 +48,10 @@ const Logger = function (configuration) {
             logString = entryDescription + ('[' + component + '] ').italic;
 
             if (subcat)
-                logString += ('(' + subcat + ') ').bold.grey;
-            logString += text.grey;
+                logString += ('(' + subcat + ') ').bold.blue;
+            logString += text.blue;
         } else {
-            let logString = entryDescription + '[' + component + '] ';
+            logString = entryDescription + '[' + component + '] ';
             if (subcat)
                 logString += '(' + subcat + ') ';
             logString += text;
