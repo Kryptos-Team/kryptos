@@ -3,6 +3,8 @@ const colors = require("colors");
 
 const severityToColor = function (severity, text) {
     switch (severity) {
+        case 'debug':
+            return text.magenta;
         case 'info':
             return text.cyan;
         case 'special':
