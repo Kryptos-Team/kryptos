@@ -9,6 +9,7 @@ const posix = require("posix");
 const Logger = require("./src/logger");
 const cliListener = require("./src/cliListener");
 const PoolWorker = require("./src/poolWorker");
+const PaymentProcessor = require("./src/paymentProcessor");
 
 const algorithms = require("kryptos-stratum-pool/src/algoProperties");
 
@@ -48,6 +49,7 @@ if (cluster.isWorker) {
 			new PoolWorker(logger);
 			break;
 		case 'paymentProcessor':
+			new PaymentProcessor(logger);
 			break;
 		case 'profitSwitch':
 			break;
