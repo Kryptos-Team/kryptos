@@ -21,8 +21,8 @@ module.exports = function (logger, poolConfiguration) {
 	let connection = redis.createClient(redisConfig.port, redisConfig.host);
 	
 	connection.on("ready", function () {
-		loger.debug(logSystem, logComponent, logSubcat,
-		            "Share processing setup with redis (" + redisConfig.host + ":" + redisConfig.port + ")");
+		logger.debug(logSystem, logComponent, logSubcat,
+		             "Share processing setup with redis (" + redisConfig.host + ":" + redisConfig.port + ")");
 	});
 	
 	connection.on("error", function (error) {
