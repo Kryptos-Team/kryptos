@@ -187,7 +187,7 @@ module.exports = function (logger) {
 	});
 	
 	if (portalConfiguration.switching) {
-		let logSystem = "Switching";
+		let logSystem = "Switch";
 		let logComponent = "Setup";
 		let logSubcat = "Thread " + (parseInt(forkId) + 1);
 		
@@ -238,7 +238,7 @@ module.exports = function (logger) {
 						}
 					}).listen(parseInt(port), function () {
 						logger.debug(logSystem, logComponent, logSubcat,
-						             "Switching " + switchName + " listening for " + algorithm + " on port " + port +
+						             "Switch " + switchName + " listening for " + algorithm + " on port " + port +
 						             " into " + proxySwitch[switchName].currentPool);
 					});
 					proxySwitch[switchName].servers.push(f);
@@ -262,7 +262,7 @@ module.exports = function (logger) {
 	// Called when stratum pool emits its 'started' event to copy the initial diff and vardiff configuration for any
 	// proxy switching ports configured into the stratum pool object
 	this.setDifficultyForProxyPort = function (pool, coin, algorithm) {
-		logger.debug("Switching", "Setup", "Thread " + (parseInt(forkId) + 1), algorithm,
+		logger.debug("Switch", "Setup", "Thread " + (parseInt(forkId) + 1), algorithm,
 		             "Setting proxy difficulties after pool start");
 		
 		Object.keys(portalConfiguration.switching).forEach(function (switchName) {

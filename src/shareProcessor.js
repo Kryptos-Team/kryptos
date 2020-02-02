@@ -1,5 +1,4 @@
 const redis = require("redis");
-const Stratum = require("kryptos-stratum-pool");
 
 /*
  This module delas with handling shares when in internal payment processing mode. It connects to a redis database and
