@@ -37,6 +37,8 @@
     "extend": "^3.0.2",
     "kryptos-stratum-pool": "^1.0.1",
     "node-json-minify": "^1.0.0",
-    "posix": "^4.1.2"
+    "nonce": "^1.0.4",
+    "posix": "^4.1.2",
+    "request": "^2.88.0"
   }
 }
