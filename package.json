@@ -39,6 +39,7 @@
     "node-json-minify": "^1.0.0",
     "nonce": "^1.0.4",
     "posix": "^4.1.2",
+    "redis": "^2.8.0",
     "request": "^2.88.0"
   }
 }
