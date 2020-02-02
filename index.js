@@ -222,7 +222,34 @@ const spawnPoolWorkers = function () {
 	}, 250);
 };
 
+const startPaymentProcessor = function () {
+	let enabledForAny = false;
+	
+	for (let pool in poolConfigurations) {
+		let p = poolConfigurations[pool];
+		let enabled = p.enabled && p.paymentProcessing && p.paymentProcessing.enabled;
+		if (enabled) {
+			enabledForAny = true;
+			break;
+		}
+	}
+	
+	if (!enabledForAny) return;
+	
+	let worker = cluster.fork({
+		                          workerType: "paymentProcessor",
+		                          pools:      JSON.stringify(poolConfigurations)
+	                          });
+	worker.on("exit", function (code, signal) {
+		logger.error("Master", "Payment Processor", "Payment processor died, spawning replacement...");
+		setTimeout(function () {
+			startPaymentProcessor(poolConfigurations);
+		}, 2000);
+	});
+};
+
 (function init() {
 	poolConfigurations = buildPoolConfigurations();
 	spawnPoolWorkers();
+	startPaymentProcessor();
 })();
