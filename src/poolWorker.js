@@ -95,12 +95,9 @@ module.exports = function (logger) {
 		let logSubcat = "Thread " + (parseInt(forkId) + 1);
 		
 		let handlers = {
-			auth:  function () {
-			},
-			share: function () {
-			},
-			diff:  function () {
-			}
+			auth:  function () {},
+			share: function () {},
+			diff:  function () {}
 		};
 		
 		let shareProcessor = new ShareProcessor(logger, poolOptions);
@@ -265,7 +262,8 @@ module.exports = function (logger) {
 	// Called when stratum pool emits its 'started' event to copy the initial diff and vardiff configuration for any
 	// proxy switching ports configured into the stratum pool object
 	this.setDifficultyForProxyPort = function (pool, coin, algorithm) {
-		logger.debug(logSystem, logComponent, logSubcat, algorithm, "Setting proxy difficulties after pool start");
+		logger.debug("Switching", "Setup", "Thread " + (parseInt(forkId) + 1), algorithm,
+		             "Setting proxy difficulties after pool start");
 		
 		Object.keys(portalConfiguration.switching).forEach(function (switchName) {
 			if (!portalConfiguration.switching[switchName].enabled) return;
