@@ -443,14 +443,12 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 						switch (r.category) {
 							case "kicked":
 								movePendingCommands.push(
-									["smove", coin + ":blocksPending", coin + ":blocksKicked",
-										r.serialized]);
+									["smove", coin + ":blocksPending", coin + ":blocksKicked", r.serialized]);
 								return;
 
 							case "orphan":
 								movePendingCommands.push(
-									["smove", coin + ":blocksPending", coin + ":blocksOrphaned",
-										r.serialized]);
+									["smove", coin + ":blocksPending", coin + ":blocksOrphaned", r.serialized]);
 								if (r.canDeleteShares) {
 									moveSharesToCurrent(r);
 									roundsToDelete.push(coin + ":shares:round", r.height);
