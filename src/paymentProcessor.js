@@ -56,12 +56,16 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 	async.parallel([
 		               function (callback) {
 			               daemon.cmd("validateaddress", [poolOptions.address], function (result) {
+				               logger.debug(logSystem, logComponent, "Daemon running validateaddress for " +
+				                                                     poolOptions.address);
 				               if (result.error) {
 					               logger.error(logSystem, logComponent,
 					                            "Error with payment processing daemon " + JSON.stringify(result.error));
 					               callback(true);
 				               } else if (!result.response || !result.response.ismine) {
 					               daemon.cmd("getaddressinfo", [poolOptions.address], function (result) {
+						               logger.debug(logSystem, logComponent, "Daemon running getaddressinfo for " +
+						                                                     poolOptions.address);
 						               if (result.error) {
 							               logger.error(logSystem, logComponent,
 							                            "Error with payment processing daemon, getaddressinfo failed " +
@@ -83,7 +87,12 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 		               },
 		               function (callback) {
 			               daemon.cmd("getbalance", [], function (result) {
+				               logger.debug(logSystem, logComponent, "Daemon running getbalance");
+				
 				               if (result.error) {
+					               logger.error(logSystem, logComponent,
+					                            "Daemon encountered error while running getbalance " +
+					                            JSON.stringify(result.error));
 					               callback(true);
 					               return;
 				               }
@@ -91,7 +100,6 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 					               let d = result.data.split('result":')[1].split(",")[0].split(".")[1];
 					               magnitude = parseInt("10" + new Array(d.length).join("0"));
 					               minPaymentSatoshis = parseInt(processingConfiguration.minimumPayment * magnitude);
-					               console.log(minPaymentSatoshis);
 					               coinPrecision = magnitude.toString().length - 1;
 					               callback();
 				               } catch (e) {
@@ -133,6 +141,8 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 	 When we are storing numbers for only humans to see, store in while coin units.
 	 */
 	let processPayments = function () {
+		logger.debug(logSystem, logComponent, "Processing payments...");
+		
 		let startPaymentProcess = Date.now();
 		
 		let timeSpentRPC = 0;
