@@ -34,4 +34,4 @@ let listener = module.exports = function listener(port) {
 	}
 };
 
-listener.prototype.__protp__ = events.EventEmitter.prototype;
+listener.prototype.__proto__ = events.EventEmitter.prototype;
