@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../daemon/.idea/daemon.iml" filepath="$PROJECT_DIR$/../daemon/.idea/daemon.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kryptos.iml" filepath="$PROJECT_DIR$/.idea/kryptos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../stratum-pool/.idea/stratum-pool.iml" filepath="$PROJECT_DIR$/../stratum-pool/.idea/stratum-pool.iml" />
     </modules>
   </component>
 </project>
