@@ -184,7 +184,7 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 							let details = r.split(":");
 							return {
 								blockHash: details[0],
-								tcHash: details[1],
+								txHash: details[1],
 								height: details[2],
 								serialized: r
 							};
@@ -208,9 +208,6 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 						endRPCTimer();
 
 						if (error || !txDetails) {
-							logger.error(logSystem, logComponent,
-								"Check finished - daemon RDP error with batch gettransactions " +
-								JSON.stringify(error));
 							callback(true);
 							return;
 						}
@@ -230,8 +227,7 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 									"daemon reports invalid transaction: " + round.txHash);
 								round.category = "kicked";
 								return;
-							} else if (!tx.result.details || tx.result.details &&
-								tx.result.details.length === 0) {
+							} else if (!tx.result.details || (tx.result.details && tx.result.details.length === 0)) {
 								logger.warning(logSystem, logComponent,
 									"Daemon reports no details for transaction: " +
 									round.txHash);
@@ -265,7 +261,7 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 							}
 						});
 
-						let canDeleteShares = function (tx) {
+						let canDeleteShares = function (r) {
 							for (let i = 0; i < rounds.length; i++) {
 								let compareR = rounds[i];
 								if ((compareR.category === r.height)
