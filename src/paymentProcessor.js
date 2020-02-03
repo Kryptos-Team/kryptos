@@ -224,7 +224,7 @@ function SetupForPool(logger, poolOptions, setupFinished) {
 
 							if (tx.error && tx.error.code === -5) {
 								logger.warning(logSystem, logComponent,
-									"daemon reports invalid transaction: " + round.txHash);
+									"Daemon reports invalid transaction: " + round.txHash);
 								round.category = "kicked";
 								return;
 							} else if (!tx.result.details || (tx.result.details && tx.result.details.length === 0)) {
