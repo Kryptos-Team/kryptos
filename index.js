@@ -10,6 +10,7 @@ const Logger = require("./src/logger");
 const CliListener = require("./src/cliListener");
 const PoolWorker = require("./src/poolWorker");
 const PaymentProcessor = require("./src/paymentProcessor");
+const Website = require("./src/website");
 
 const algorithms = require("kryptos-stratum-pool/src/algoProperties");
 
@@ -52,6 +53,9 @@ if (cluster.isWorker) {
 			new PaymentProcessor(logger);
 			break;
 		case 'profitSwitch':
+			break;
+		case 'website':
+			new Website(logger);
 			break;
 	}
 	return;
@@ -243,9 +247,26 @@ const startPaymentProcessor = function () {
 	worker.on("exit", function (code, signal) {
 		logger.error("Master", "Payment Processor", "Payment processor died, spawning replacement...");
 		setTimeout(function () {
-			startPaymentProcessor(poolConfigurations);
+			startPaymentProcessor();
 		}, 2000);
 	});
+};
+
+const startWebsite = function () {
+	if (!portalConfiguration.website.enabled) return;
+
+	let worker = cluster.fork({
+		workerType: "website",
+		pools: JSON.stringify(poolConfigurations),
+		portalConfiguration: JSON.stringify(portalConfiguration)
+	});
+
+	worker.on("exit", function (code, signal) {
+		logger.error("Master", "Website", "Website process died, spawning replacement...");
+		setTimeout(function () {
+			startWebsite();
+		}, 2000);
+	})
 };
 
 const startCliListener = function () {
@@ -289,4 +310,5 @@ const startCliListener = function () {
 	spawnPoolWorkers();
 	startPaymentProcessor();
 	startCliListener();
+	startWebsite();
 })();

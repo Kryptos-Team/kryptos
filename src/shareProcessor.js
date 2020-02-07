@@ -64,6 +64,8 @@ module.exports = function (logger, poolConfiguration) {
 	this.handleShare = function (isValidShare, isValidBlock, shareData) {
 		let redisCommands = [];
 
+		console.debug(shareData);
+
 		if (isValidShare) {
 			logger.info(logSystem, logComponent, logSubcat, "Valid share found by worker: " + shareData.worker);
 			redisCommands.push(["hincrbyfloat", coin + ":shares:roundCurrent", shareData.worker, shareData.difficulty]);
