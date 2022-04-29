@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/Kryptos-Team/kryptos#readme",
   "dependencies": {
-    "async": "1.5.2",
+    "async": "2.6.4",
     "base58-native": "^0.1.4",
     "bignum": "^0.13.1",
     "colors": "^1.4.0",
